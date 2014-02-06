@@ -102,17 +102,44 @@ public class LifeComponent extends JComponent {
         for (int y = 0; y < bh; y += CELL_SIZE + GUTTER_SIZE) {
             g2.fillRect(0, y, bw, GUTTER_SIZE);
         }
-        
-        g2.setPaint(Color.BLACK);
+
+
+
+        //g2.setPaint(Color.BLACK);
         
         for (int x = 0; x < board.getWidth(); x++) {
             int xpos = cellDistance(x);
-            
+
             for (int y = 0; y < board.getHeight(); y++) {
                 int ypos = cellDistance(y);
+                g2.setPaint(Color.BLACK);
                 if (board.getCell(x, y)) {
+                    int neighbors = board.countLivingNeighbors(x,y);
+                    if (neighbors == 2) {
+                        g2.setPaint(Color.BLUE);
+                    }
+                    if (neighbors == 3) {
+                        g2.setPaint(Color.CYAN);
+                    }
+                    if (neighbors == 4) {
+                        g2.setPaint(Color.GREEN);
+                    }
+                    if (neighbors == 5) {
+                        g2.setPaint(Color.YELLOW);
+                    }
+                    if (neighbors == 6) {
+                        g2.setPaint(Color.ORANGE);
+                    }
+                    if (neighbors == 7) {
+                        g2.setPaint(Color.YELLOW);
+                    }
+                    if (neighbors == 8) {
+                        g2.setPaint(Color.PINK);
+                    }
                     g2.fillRect(xpos, ypos, CELL_SIZE, CELL_SIZE);
                 }
+
+
             }
         }
     }
